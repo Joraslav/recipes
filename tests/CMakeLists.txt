@@ -97,3 +97,14 @@ ADD_GTEST_TARGET(TestServerConfig
     LINK_LIBS
     _config
 )
+
+ADD_GTEST_TARGET(TestRecipesClient
+
+    SOURCES
+    TestRecipesClient.cpp
+    LINK_LIBS
+    _client
+    _server
+    COMPILE_DEFINITIONS
+        RECIPES_TEST_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
+)

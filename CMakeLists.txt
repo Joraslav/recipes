@@ -27,6 +27,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/api)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/config)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/server)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/app)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/client)
 
 if(BUILD_EXAMPLES)
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
@@ -49,4 +50,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
  _app
  _config
  _server
+ _client
 )

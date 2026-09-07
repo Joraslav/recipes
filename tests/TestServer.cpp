@@ -17,6 +17,7 @@
 #include <boost/beast/core/flat_buffer.hpp>
 #include <boost/beast/http.hpp>
 #include <boost/beast/http/empty_body.hpp>
+#include <boost/beast/http/field.hpp>
 #include <boost/beast/http/message_fwd.hpp>
 #include <boost/beast/http/read.hpp>
 #include <boost/beast/http/status.hpp>

@@ -99,6 +99,11 @@ std::expected<ProductRequest, std::string> ParseProductRequest(
     return ParseJson<ProductRequest>(json);
 }
 
+std::expected<std::vector<ProductResponse>, std::string> ParseProductResponses(
+    std::string_view json) {
+    return ParseJson<std::vector<ProductResponse>>(json);
+}
+
 std::expected<RecipeRequest, std::string> ParseRecipeRequest(
     std::string_view json) {
     return ParseJson<RecipeRequest>(json);

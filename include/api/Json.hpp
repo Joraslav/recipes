@@ -43,6 +43,14 @@ namespace api {
 [[nodiscard]] std::expected<std::string, std::string> SerializeJson(
     const std::vector<ProductResponse>& responses);
 /**
+ * @brief Parses a list of persisted products from JSON.
+ * @param json JSON document to parse.
+ * @return Parsed product responses or a human-readable JSON syntax/type error.
+ * @exception_safety Strong guarantee.
+ */
+[[nodiscard]] std::expected<std::vector<ProductResponse>, std::string>
+ParseProductResponses(std::string_view json);
+/**
  * @brief Serializes a persisted recipe to the API JSON representation.
  * @param response Recipe response to serialize.
  * @return JSON document or serialization error description.
