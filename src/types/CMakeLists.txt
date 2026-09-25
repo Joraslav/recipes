@@ -8,6 +8,6 @@ target_include_directories(_types
   $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(_types INTERFACE
- SQLiteCpp
-)
+# target_link_libraries(_types INTERFACE
+#  SQLiteCpp
+# )

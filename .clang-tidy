@@ -105,6 +105,8 @@ CheckOptions:
     value:           'h;hh;hpp;hxx'
   - key:             bugprone-suspicious-include.ImplementationFileExtensions
     value:           'c;cc;cpp;cxx'
+  - key:             bugprone-easily-swappable-parameters.MinimumLength
+    value:           2
 
   - key:             cppcoreguidelines-special-member-functions.AllowSoleDefaultDtor
     value:           '1'

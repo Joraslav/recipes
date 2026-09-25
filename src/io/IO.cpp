@@ -13,7 +13,7 @@
 #include <span>
 #include <system_error>
 
-using types::Product;
+using types::InventoryItem;
 using types::Recipe;
 using namespace io::json;
 using namespace io::yaml;

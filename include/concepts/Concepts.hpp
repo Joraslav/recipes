@@ -46,7 +46,7 @@ concept SameDimension =
 
 template <typename TEntity>
 concept ProductOrRecipe =
-    std::same_as<std::remove_cvref_t<TEntity>, types::Product> ||
+    std::same_as<std::remove_cvref_t<TEntity>, types::InventoryItem> ||
     std::same_as<std::remove_cvref_t<TEntity>, types::Recipe>;
 
 }  // namespace concepts

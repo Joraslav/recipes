@@ -8,7 +8,7 @@
 #include <span>
 #include <string_view>
 
-using types::Product;
+using types::InventoryItem;
 using types::Recipe;
 using namespace std::string_view_literals;
 

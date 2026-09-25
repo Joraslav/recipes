@@ -44,7 +44,7 @@ struct DateRange final {
     return Dates{.manufacture = manufacture, .expiration = expiration};
 }
 
-[[nodiscard]] std::vector<Product> MakeProducts() {
+[[nodiscard]] std::vector<InventoryItem> MakeProducts() {
     static constexpr std::array<std::string_view, 12> kProductNames = {
         "Milk", "Bread", "Eggs",   "Butter", "Cheese", "Chicken",
         "Rice", "Pasta", "Tomato", "Apple",  "Banana", "Potato"};
@@ -60,7 +60,7 @@ struct DateRange final {
         0, kDimensions.size() - 1);
     std::uniform_int_distribution<int> amount_dist(1, 500);
 
-    std::vector<Product> products;
+    std::vector<InventoryItem> products;
     products.reserve(100);
 
     for (int i = 0; i < 100; ++i) {

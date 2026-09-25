@@ -1,11 +1,12 @@
-FIND_LIB(SQLiteCpp)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/repository/sqlite)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/repository/postgresql)
 
 add_library(_db STATIC
- DBManager.cpp
+  DBManager.cpp
 )
 
 target_include_directories(_db
- PUBLIC
+  PUBLIC
   $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
   $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include/db>
   $<INSTALL_INTERFACE:include>
@@ -13,5 +14,6 @@ target_include_directories(_db
 )
 
 target_link_libraries(_db PUBLIC
-  SQLiteCpp
+  _sqliterepo
+  _postgresqlrepo
 )

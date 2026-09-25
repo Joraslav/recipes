@@ -41,12 +41,13 @@ class DBManager final {
     DBManager(DBManager&&) = default;
     DBManager& operator=(DBManager&&) = default;
 
-    void InsertProduct(const types::Product& product);
-    void InsertProducts(std::span<const types::Product> products);
-    [[nodiscard]] int64_t CreateProduct(const types::Product& product);
-    [[nodiscard]] std::optional<types::Product> GetProduct(int64_t product_id);
+    void InsertProduct(const types::InventoryItem& product);
+    void InsertProducts(std::span<const types::InventoryItem> products);
+    [[nodiscard]] int64_t CreateProduct(const types::InventoryItem& product);
+    [[nodiscard]] std::optional<types::InventoryItem> GetProduct(
+        int64_t product_id);
     [[nodiscard]] bool UpdateProduct(int64_t product_id,
-                                     const types::Product& product);
+                                     const types::InventoryItem& product);
     [[nodiscard]] bool DeleteProduct(int64_t product_id);
 
     void InsertRecipe(const types::Recipe& recipe);
@@ -57,13 +58,13 @@ class DBManager final {
                                     const types::Recipe& recipe);
     [[nodiscard]] bool DeleteRecipe(int64_t recipe_id);
 
-    [[nodiscard]] std::vector<types::Product> GetAllProducts();
+    [[nodiscard]] std::vector<types::InventoryItem> GetAllProducts();
 
     [[nodiscard]] std::vector<types::Recipe> GetAllRecipes();
 
     [[nodiscard]] std::vector<types::Recipe> GetCookableRecipes();
 
-    [[nodiscard]] std::vector<types::Product> GetRecipeIngredients(
+    [[nodiscard]] std::vector<types::InventoryItem> GetRecipeIngredients(
         int64_t recipe_id);
 
  private:
@@ -104,6 +105,41 @@ class DBManager final {
                                   const types::Recipe& recipe);
     [[nodiscard]] static std::vector<types::Recipe> FetchRecipes(
         Statement& stmt, std::optional<int64_t> recipe_id = std::nullopt);
+};
+
+/**
+ * @brief Interface for a database.
+ */
+class IDatabase {
+ public:
+    virtual ~IDatabase() = default;
+
+    virtual void InsertProduct(const types::InventoryItem& product) = 0;
+    virtual void InsertProducts(
+        std::span<const types::InventoryItem> products) = 0;
+    [[nodiscard]] virtual int64_t CreateProduct(
+        const types::InventoryItem& product) = 0;
+    [[nodiscard]] virtual std::optional<types::InventoryItem> GetProduct(
+        int64_t product_id) = 0;
+    [[nodiscard]] virtual bool UpdateProduct(
+        int64_t product_id, const types::InventoryItem& product) = 0;
+    [[nodiscard]] virtual bool DeleteProduct(int64_t product_id) = 0;
+
+    virtual void InsertRecipe(const types::Recipe& recipe) = 0;
+    virtual void InsertRecipes(std::span<const types::Recipe> recipes) = 0;
+    [[nodiscard]] virtual int64_t CreateRecipe(const types::Recipe& recipe) = 0;
+    [[nodiscard]] virtual std::optional<types::Recipe> GetRecipe(
+        int64_t recipe_id) = 0;
+    [[nodiscard]] virtual bool UpdateRecipe(int64_t recipe_id,
+                                            const types::Recipe& recipe) = 0;
+    [[nodiscard]] virtual bool DeleteRecipe(int64_t recipe_id) = 0;
+
+    [[nodiscard]] virtual std::vector<types::InventoryItem>
+    GetAllProducts() = 0;
+    [[nodiscard]] virtual std::vector<types::Recipe> GetAllRecipes() = 0;
+    [[nodiscard]] virtual std::vector<types::Recipe> GetCookableRecipes() = 0;
+    [[nodiscard]] virtual std::vector<types::InventoryItem>
+    GetRecipeIngredients(int64_t recipe_id) = 0;
 };
 
 }  // namespace db

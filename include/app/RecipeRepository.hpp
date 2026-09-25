@@ -21,16 +21,17 @@ class RecipeRepository {
     virtual ~RecipeRepository() = default;
 
     /** @brief Persists a product and returns it with its assigned ID. */
-    virtual std::expected<types::Product, Error> CreateProduct(
-        const types::Product& product) = 0;
+    virtual std::expected<types::InventoryItem, Error> CreateProduct(
+        const types::InventoryItem& product) = 0;
     /** @brief Returns a product by ID, or `std::nullopt` when it is absent. */
-    virtual std::expected<std::optional<types::Product>, Error> GetProduct(
-        int64_t product_id) = 0;
+    virtual std::expected<std::optional<types::InventoryItem>, Error>
+    GetProduct(int64_t product_id) = 0;
     /** @brief Returns all persisted products. */
-    virtual std::expected<std::vector<types::Product>, Error> GetProducts() = 0;
+    virtual std::expected<std::vector<types::InventoryItem>, Error>
+    GetProducts() = 0;
     /** @brief Replaces a product and reports whether its ID exists. */
     virtual std::expected<bool, Error> UpdateProduct(
-        int64_t product_id, const types::Product& product) = 0;
+        int64_t product_id, const types::InventoryItem& product) = 0;
     /** @brief Deletes a product and reports whether its ID exists. */
     virtual std::expected<bool, Error> DeleteProduct(int64_t product_id) = 0;
 

@@ -50,7 +50,7 @@ namespace io::yaml {
 template <concepts::ProductOrRecipe Tv>
 [[nodiscard]] std::expected<void, std::error_code> WriteItemsYaml(
     std::span<const Tv> items, const std::filesystem::path& out_path = {}) {
-    if constexpr (std::is_same_v<Tv, types::Product>) {
+    if constexpr (std::is_same_v<Tv, types::InventoryItem>) {
         return WriteProductsYaml(items, out_path);
     } else if constexpr (std::is_same_v<Tv, types::Recipe>) {
         return WriteRecipesYaml(items, out_path);

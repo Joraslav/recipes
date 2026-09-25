@@ -21,7 +21,7 @@
 #include <utility>
 #include <vector>
 
-using types::Product;
+using types::InventoryItem;
 using types::Recipe;
 namespace fs = std::filesystem;
 

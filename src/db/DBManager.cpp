@@ -21,8 +21,8 @@
 
 using types::Dates;
 using types::Dimension;
+using types::InventoryItem;
 using types::PreparedStatements;
-using types::Product;
 using types::Recipe;
 using Statement = db::DBManager::Statement;
 using Database = db::DBManager::Database;
@@ -157,7 +157,7 @@ DBManager::DBManager(Database db)
 
 //////// Public Methods ////////
 
-void DBManager::InsertProduct(const types::Product& product) {
+void DBManager::InsertProduct(const types::InventoryItem& product) {
     ResetStatement(insert_product_);
     BindProduct(insert_product_, product);
     insert_product_.exec();
@@ -202,7 +202,7 @@ bool DBManager::DeleteProduct(int64_t product_id) {
     return db_.getChanges() == 1;
 }
 
-std::vector<types::Product> DBManager::GetAllProducts() {
+std::vector<types::InventoryItem> DBManager::GetAllProducts() {
     ResetStatement(select_all_products_);
 
     std::vector<Product> products;
@@ -212,7 +212,8 @@ std::vector<types::Product> DBManager::GetAllProducts() {
     return products;
 }
 
-std::vector<types::Product> DBManager::GetRecipeIngredients(int64_t recipe_id) {
+std::vector<types::InventoryItem> DBManager::GetRecipeIngredients(
+    int64_t recipe_id) {
     ResetStatement(select_recipe_ingredients_by_recipe_id_);
     select_recipe_ingredients_by_recipe_id_.bind(1, recipe_id);
 

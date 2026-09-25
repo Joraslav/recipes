@@ -26,18 +26,18 @@ class RecipeService final {
     explicit RecipeService(RecipeRepository& repository) noexcept;
 
     /** @brief Validates and persists a product. */
-    [[nodiscard]] std::expected<types::Product, Error> CreateProduct(
-        const types::Product& product);
+    [[nodiscard]] std::expected<types::InventoryItem, Error> CreateProduct(
+        const types::InventoryItem& product);
     /** @brief Gets a product, returning `std::nullopt` when it is absent. */
-    [[nodiscard]] std::expected<std::optional<types::Product>, Error>
+    [[nodiscard]] std::expected<std::optional<types::InventoryItem>, Error>
     GetProduct(int64_t product_id);
     /** @brief Gets all products. */
-    [[nodiscard]] std::expected<std::vector<types::Product>, Error>
+    [[nodiscard]] std::expected<std::vector<types::InventoryItem>, Error>
     GetProducts();
     /** @brief Validates and replaces a product, returning `NotFound` if absent.
      */
     [[nodiscard]] std::expected<void, Error> UpdateProduct(
-        int64_t product_id, const types::Product& product);
+        int64_t product_id, const types::InventoryItem& product);
     /** @brief Deletes a product, returning `NotFound` if absent. */
     [[nodiscard]] std::expected<void, Error> DeleteProduct(int64_t product_id);
 
@@ -61,7 +61,7 @@ class RecipeService final {
 
  private:
     [[nodiscard]] static std::expected<void, Error> ValidateProduct(
-        const types::Product& product);
+        const types::InventoryItem& product);
     [[nodiscard]] static std::expected<void, Error> ValidateRecipe(
         const types::Recipe& recipe);
 

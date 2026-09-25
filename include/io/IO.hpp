@@ -44,8 +44,8 @@ constexpr size_t kMinSizeForParallelReporting = 250;
  * @return Error code if any write fails.
  */
 [[nodiscard]] std::expected<void, std::error_code> ReportProducts(
-    std::span<const types::Product> products, const arg::Args::ArgsOut& args,
-    std::ostream& out = std::cout);
+    std::span<const types::InventoryItem> products,
+    const arg::Args::ArgsOut& args, std::ostream& out = std::cout);
 
 /**
  * @brief Dispatches reporting to the product or recipe implementation.
@@ -59,7 +59,7 @@ template <concepts::ProductOrRecipe Tv>
 [[nodiscard]] std::expected<void, std::error_code> ReportsItems(
     std::span<const Tv> items, const arg::Args::ArgsOut& args,
     std::ostream& out = std::cout) {
-    if constexpr (std::is_same_v<Tv, types::Product>) {
+    if constexpr (std::is_same_v<Tv, types::InventoryItem>) {
         return ReportProducts(items, args, out);
     } else if constexpr (std::is_same_v<Tv, types::Recipe>) {
         return ReportRecipes(items, args, out);

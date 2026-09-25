@@ -7,7 +7,7 @@
 using app::Error;
 using app::ErrorCode;
 using db::DBManager;
-using types::Product;
+using types::InventoryItem;
 using types::Recipe;
 
 #include <cstdint>

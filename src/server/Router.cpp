@@ -37,7 +37,7 @@ using app::DatabaseExecutor;
 using app::Error;
 using app::ErrorCode;
 using app::RecipeService;
-using types::Product;
+using types::InventoryItem;
 using types::Recipe;
 
 namespace {

@@ -10,7 +10,7 @@
 #include <string>
 #include <vector>
 
-using types::Product;
+using types::InventoryItem;
 using types::Recipe;
 
 namespace app {
@@ -112,7 +112,7 @@ std::expected<void, Error> RecipeService::DeleteRecipe(int64_t recipe_id) {
 }
 
 std::expected<void, Error> RecipeService::ValidateProduct(
-    const types::Product& product) {
+    const types::InventoryItem& product) {
     if (product.GetName().empty()) {
         return std::unexpected(
             Error{ErrorCode::Validation, "Product name must not be empty"});

@@ -27,14 +27,14 @@ class SqliteRecipeRepository final : public RecipeRepository {
      */
     explicit SqliteRecipeRepository(db::DBManager& db_manager) noexcept;
 
-    [[nodiscard]] std::expected<types::Product, Error> CreateProduct(
-        const types::Product& product) override;
-    [[nodiscard]] std::expected<std::optional<types::Product>, Error>
+    [[nodiscard]] std::expected<types::InventoryItem, Error> CreateProduct(
+        const types::InventoryItem& product) override;
+    [[nodiscard]] std::expected<std::optional<types::InventoryItem>, Error>
     GetProduct(int64_t product_id) override;
-    [[nodiscard]] std::expected<std::vector<types::Product>, Error>
+    [[nodiscard]] std::expected<std::vector<types::InventoryItem>, Error>
     GetProducts() override;
     [[nodiscard]] std::expected<bool, Error> UpdateProduct(
-        int64_t product_id, const types::Product& product) override;
+        int64_t product_id, const types::InventoryItem& product) override;
     [[nodiscard]] std::expected<bool, Error> DeleteProduct(
         int64_t product_id) override;
 
