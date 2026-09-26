@@ -88,7 +88,7 @@ namespace {
         return std::nullopt;
     }
 
-    return std::chrono::sys_days{ymd};
+    return Date{ymd};
 }
 
 }  // namespace
@@ -308,6 +308,10 @@ Result<void, Error> InventoryItemRepository::Delete(Id id) {
 // NOLINTNEXTLINE(bugprone-easily-swappable-parameters)
 Result<void, Error> InventoryItemRepository::Consume(Id product_type_id,
                                                      Amount amount) {
+    if (product_type_id <= 0) {
+        return std::unexpected(
+            Error{ErrorCode::InvalidData, "Product type ID must be positive"});
+    }
     if (amount <= 0) {
         return std::unexpected(
             Error{ErrorCode::InvalidData,
@@ -337,7 +341,7 @@ Result<void, Error> InventoryItemRepository::Consume(Id product_type_id,
             std::ignore = update.exec();
 
             remaining -= consumed;
-            if (remaining == 0) {
+            if (remaining <= 0) {
                 break;
             }
         }
