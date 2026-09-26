@@ -2,6 +2,8 @@ FIND_LIB(libpqxx)
 
 add_library(_postgresqlrepo STATIC
   ProductTypeRepository.cpp
+  InventoryItemRepository.cpp
+  RecipeRepository.cpp
 )
 
 target_include_directories(_postgresqlrepo
