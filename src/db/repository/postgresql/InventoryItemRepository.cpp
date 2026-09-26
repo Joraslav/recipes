@@ -18,6 +18,7 @@
 #include <string_view>
 #include <vector>
 
+#include "pqxx/params"
 #include "pqxx/result"
 #include "pqxx/row"
 #include "pqxx/transaction"

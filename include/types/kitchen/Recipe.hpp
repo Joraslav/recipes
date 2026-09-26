@@ -24,12 +24,12 @@ class Recipe final {
           ingredients_(std::move(ingredients)) {}
     // NOLINTNEXTLINE(bugprone-easily-swappable-parameters)
     explicit Recipe(std::string_view name, std::string_view description,
-                    std::span<RecipeIngredient> ingredients,
+                    std::span<const RecipeIngredient> ingredients,
                     std::optional<Id> id = std::nullopt)
         : id_(id),
           name_(name),
           description_(description),
-          ingredients_(ingredients.begin(), ingredients.end()) {}
+          ingredients_(ingredients.cbegin(), ingredients.cend()) {}
     Recipe(const Recipe&) = default;
     Recipe& operator=(const Recipe&) = default;
     Recipe(Recipe&&) = default;
@@ -44,8 +44,8 @@ class Recipe final {
     void SetIngredients(std::vector<RecipeIngredient> ingredients) {
         ingredients_ = std::move(ingredients);
     }
-    void SetIngredients(std::span<RecipeIngredient> ingredients) {
-        ingredients_.assign(ingredients.begin(), ingredients.end());
+    void SetIngredients(std::span<const RecipeIngredient> ingredients) {
+        ingredients_.assign(ingredients.cbegin(), ingredients.cend());
     }
     void AddIngredient(RecipeIngredient ingredient) {
         ingredients_.push_back(std::move(ingredient));
